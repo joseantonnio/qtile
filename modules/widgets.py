@@ -1,18 +1,20 @@
 from libqtile import widget
 from libqtile import qtile
 
-colors = [
-    ["#282c34", "#282c34"],  # panel background
-    ["#3d3f4b", "#434758"],  # background for current screen tab
-    ["#ffffff", "#ffffff"],  # font color for group names
-    ["#ff5555", "#ff5555"],  # border line color for current tab
-    # border line color for 'other tabs' and color for 'odd widgets'
-    ["#74438f", "#74438f"],
-    ["#4f76c7", "#4f76c7"],  # color for the 'even widgets'
-    ["#e1acff", "#e1acff"],  # window name
-    ["#ecbbfb", "#ecbbfb"]  # backbround for inactive screens
-]
-
+colors = dict(
+    background="#282a36",
+    current_line="#44475a",
+    selection="#44475a",
+    foreground="#f8f8f2",
+    comment="#6272a4",
+    cyan="#8be9fd",
+    green="#50fa7b",
+    orange="#ffb86c",
+    pink="#ff79c6",
+    purple="#bd93f9",
+    red="#ff5555",
+    yellow="#f1fa8c"
+)
 
 widget_defaults = dict(
     font='Cantarell',
@@ -27,24 +29,28 @@ class MyVolume(widget.Volume):
         widget.Volume._configure(self, qtile, bar)
         self.volume = self.get_volume()
         if self.volume <= 0:
-            self.text = ''
+            self.text = ' ' + str(self.volume) + '%'
         elif self.volume <= 15:
-            self.text = ''
+            self.text = ' ' + str(self.volume) + '%'
         elif self.volume < 50:
-            self.text = ''
+            self.text = ' ' + str(self.volume) + '%'
+        elif self.volume <= 100:
+            self.text = ' ' + str(self.volume) + '%'
         else:
-            self.text = ''
+            self.text = ' ' + str(self.volume) + '%'
         # drawing here crashes Wayland
 
     def _update_drawer(self, wob=False):
         if self.volume <= 0:
-            self.text = ''
+            self.text = ' ' + str(self.volume) + '%'
         elif self.volume <= 15:
-            self.text = ''
+            self.text = ' ' + str(self.volume) + '%'
         elif self.volume < 50:
-            self.text = ''
+            self.text = ' ' + str(self.volume) + '%'
+        elif self.volume <= 100:
+            self.text = ' ' + str(self.volume) + '%'
         else:
-            self.text = ''
+            self.text = ' ' + str(self.volume) + '%'
         self.draw()
 
         if wob:
@@ -53,9 +59,8 @@ class MyVolume(widget.Volume):
 
 
 volume = MyVolume(
-    fontsize=18,
     font='Font Awesome 5 Free',
-    foreground=colors[4],
-    background='#2f343f',
+    foreground=colors["purple"],
+    background=colors["background"],
     mouse_callbacks={'Button1': lambda: qtile.cmd_spawn("pavucontrol")}
 )

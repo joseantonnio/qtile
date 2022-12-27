@@ -4,62 +4,19 @@ from libqtile.config import Screen
 from modules.keys import terminal
 import os
 
-screens = [
-    Screen(
-        wallpaper='~/.config/qtile/assets/wallpaper.jpg',
-        top=bar.Bar(
-            [widget.Sep(padding=3, linewidth=0, background="#2f343f"),
-                widget.Image(filename='~/.config/qtile/rocket.png', margin=3, background="#2f343f",
-                             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn("rofi -show combi")}),
-                widget.Sep(padding=4, linewidth=0, background="#2f343f"),
-                widget.GroupBox(
-                highlight_method='line',
-                this_screen_border="#5294e2",
-                this_current_screen_border="#5294e2",
-                active="#ffffff",
-                inactive="#848e96",
-                background="#2f343f"),
-                widget.TextBox(
-                text='',
-                padding=0,
-                fontsize=28,
-                foreground='#2f343f'
-            ),
-                widget.Prompt(),
-                widget.Spacer(length=5),
-                widget.WindowName(foreground='#99c0de', fmt='{}'),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-            ),
-                widget.TextBox(
-                text='',
-                padding=0,
-                fontsize=28,
-                foreground='#2f343f'
-            ),
-                widget.CurrentLayoutIcon(scale=0.75,
-                                         background='#2f343f'),
+wallpaper='~/.config/qtile/assets/wallpaper.png'
 
-            ],
-            30,  # height in px
-            background="#404552"  # background color
-        ), ),
-    Screen(
-        wallpaper='~/.config/qtile/assets/wallpaper.jpg',
-        top=bar.Bar(
+bar = bar.Bar(
             [
                 widget.Sep(
                     padding=3,
                     linewidth=0,
-                    background="#2f343f"
+                    background=colors["background"]
                 ),
                 widget.Image(
                     filename='~/.config/qtile/assets/menu.png',
                     margin=3,
-                    background="#2f343f",
+                    background=colors["background"],
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn("rofi -show combi")
                     }
@@ -67,100 +24,99 @@ screens = [
                 widget.Sep(
                     padding=4,
                     linewidth=0,
-                    background="#2f343f"
+                    background=colors["background"]
                 ),
                 widget.GroupBox(
                     highlight_method='line',
-                    this_screen_border="#5294e2",
-                    this_current_screen_border="#5294e2",
-                    active="#ffffff",
-                    inactive="#848e96",
-                    background="#2f343f"
-                ),
-                widget.TextBox(
-                    text='',
-                    padding=0,
-                    fontsize=28,
-                    foreground='#2f343f'
+                    this_screen_border=colors["purple"],
+                    this_current_screen_border=colors["purple"],
+                    active=colors["foreground"],
+                    inactive=colors["comment"],
+                    background=colors["background"]
                 ),
                 widget.Prompt(),
                 widget.Spacer(length=5),
-                widget.WindowName(foreground='#99c0de', fmt='{}'),
+                widget.WindowName(foreground=colors["purple"], fmt='{}'),
                 widget.Chord(
                     chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
+                        'launch': (colors["red"], colors["foreground"]),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox(
-                    text='',
-                    padding=0,
-                    fontsize=28,
-                    foreground='#2f343f'
-                ),
+                widget.Spacer(length=5, background=colors["background"]),
                 widget.CurrentLayoutIcon(
-                    scale=0.75,
-                    background='#2f343f'
+                    scale=0.6,
+                    background=colors["background"]
                 ),
+                widget.Systray(icon_size=20, background=colors["background"]),
+                widget.Spacer(length=5, background=colors["background"]),
                 widget.TextBox(
-
-                    text='',
-                    padding=0,
-                    fontsize=28,
-                    foreground='#2f343f',
-                ),
-                widget.CheckUpdates(
-                    update_interval=1800,
-                    distro="Arch_yay",
-                    display_format="{updates} Updates",
-                    foreground="#ffffff",
+                    text='婢',
+                    fontsize=24,
                     mouse_callbacks={
-                        'Button1':
-                        lambda: qtile.cmd_spawn(terminal + ' -e yay -Syu')
-                    }
+                        'Button1': lambda: qtile.cmd_spawn('ponymix toggle')
+                    },
+                    background=colors["background"],
+                    foreground=colors["purple"]
                 ),
-                widget.Systray(icon_size=20),
                 widget.TextBox(
-                    text='',
-                    padding=0,
-                    fontsize=28,
-                    foreground='#2f343f'
+                    text='ﱜ',
+                    fontsize=24,
+                    mouse_callbacks={
+                        'Button1': lambda: qtile.cmd_spawn('ponymix decrease 5')
+                    },
+                    background=colors["background"],
+                    foreground=colors["purple"]
+                ),
+                widget.TextBox(
+                    text='ﱛ',
+                    fontsize=24,
+                    mouse_callbacks={
+                        'Button1': lambda: qtile.cmd_spawn('ponymix increase 5')
+                    },
+                    background=colors["background"],
+                    foreground=colors["purple"]
                 ),
                 volume,
+                widget.Spacer(length=5, background=colors["background"]),
                 widget.TextBox(
-                    text='',
-                    padding=0,
-                    fontsize=28,
-                    foreground='#2f343f',
-                ),
-                widget.TextBox(
-                    text='',
-                    padding=0,
-                    fontsize=28,
-                    foreground='#2f343f'
-                ),
-                widget.Clock(format='  %a, %d %b %Y %H:%M',
-                             background="#2f343f",
-                             foreground='#9bd689'),
-                widget.TextBox(
-
-                    text='',
-                    padding=0,
-                    fontsize=28,
-                    foreground='#2f343f',
-                ),
-                widget.TextBox(
-                    text=' ',
+                    text='',
+                    fontsize=24,
                     mouse_callbacks={
-                        'Button1':
-                        lambda: qtile.cmd_spawn(os.path.expanduser(
-                            '~/.config/rofi/powermenu.sh'))
+                        'Button1': lambda: qtile.cmd_spawn('qalculate-qt')
                     },
-                    foreground='#e39378'
-                )
+                    background=colors["background"],
+                    foreground=colors["purple"]
+                ),
+                widget.Spacer(length=5, background=colors["background"]),
+                widget.TextBox(
+                    text='',
+                    font='Font Awesome 5 Free',
+                    background=colors["background"],
+                    foreground=colors["green"]
+                ),
+                widget.Clock(format='%a, %d %b %Y %H:%M',
+                             background=colors["background"],
+                             foreground=colors["green"]),
+                widget.Spacer(length=5, background=colors["background"]),
+                widget.Spacer(length=5, background=colors["red"]),
+                widget.TextBox(
+                    text='',
+                    mouse_callbacks={
+                        'Button1': lambda: qtile.cmd_spawn('rofi -show p -modi p:rofi-power-menu')
+                    },
+                    fontsize=20,
+                    background=colors["red"],
+                    foreground=colors["foreground"]
+                ),
+                widget.Spacer(length=5, background=colors["red"]),
 
             ],
-            30,  # height in px
-            background="#404552"  # background color
-        ), ),
+            30,
+            background=colors["current_line"]
+        )
+
+screens = [
+    Screen(wallpaper=wallpaper, top=bar),
+    Screen(wallpaper=wallpaper, top=bar)
 ]
