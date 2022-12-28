@@ -2,7 +2,7 @@ from libqtile.lazy import lazy
 from libqtile.config import Key
 
 mod = "mod4"
-terminal = "st -e tmux"
+terminal = "xfce4-terminal"
 
 keys = [
     # Switch between windows
