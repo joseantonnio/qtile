@@ -83,7 +83,7 @@ bar = bar.Bar(
                     text='',
                     fontsize=24,
                     mouse_callbacks={
-                        'Button1': lambda: qtile.cmd_spawn('qalculate-qt')
+                        'Button1': lambda: qtile.cmd_spawn('xfce4-terminal -e qalc')
                     },
                     background=colors["background"],
                     foreground=colors["purple"]
