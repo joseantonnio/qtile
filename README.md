@@ -1,5 +1,3 @@
 # Qtile configuration file
 
-## Screenshots 🖥️
-
-![screenshot](https://i.ibb.co/Czwn5t7/screenshot.png)
+Deprecated! See: https://github.com/joseantonnio/nixos/tree/main/wm/qtile
