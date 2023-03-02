@@ -1,8 +1,9 @@
 from libqtile.lazy import lazy
 from libqtile.config import Key
+from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = "xfce4-terminal"
+terminal = guess_terminal()
 
 keys = [
     # Switch between windows
