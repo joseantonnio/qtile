@@ -1,4 +1,4 @@
-# Qtile configuration file
+# Qtile configuration files
 
 ## 🖥️ Screenshot
 
