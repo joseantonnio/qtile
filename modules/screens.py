@@ -3,6 +3,7 @@ from .widgets import *
 from libqtile.config import Screen
 from modules.keys import terminal
 import os
+import subprocess
 
 wallpaper='~/.config/qtile/assets/wallpaper.png'
 
@@ -108,6 +109,20 @@ my_bar = bar.Bar(
                 widget.Clock(format='%a, %d %b %Y %H:%M',
                              background=colors["background"],
                              foreground=colors["green"]),
+                widget.Spacer(length=5, background=colors["background"]),
+                widget.GenPollText(
+                    fmt=' {}',
+                    func=lambda: subprocess.run(
+                            "nixos-rebuild dry-build --upgrade-all 2>&1 | grep /nix/store | wc -l",
+                            capture_output=True,
+                            text=True,
+                            shell=True
+                        ).stdout.strip(),
+                    background=colors["background"],
+                    foreground=colors["cyan"],
+                    update_interval=1800,
+                    shell=True
+                ),
                 widget.Spacer(length=5, background=colors["background"]),
                 widget.Spacer(length=5, background=colors["red"]),
                 widget.TextBox(
