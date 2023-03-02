@@ -90,6 +90,16 @@ my_bar = bar.Bar(
                 ),
                 widget.Spacer(length=5, background=colors["background"]),
                 widget.TextBox(
+                    text='',
+                    fontsize=24,
+                    mouse_callbacks={
+                        'Button1': lambda: qtile.cmd_spawn('xfce4-terminal -e nmtui')
+                    },
+                    background=colors["background"],
+                    foreground=colors["purple"]
+                ),
+                widget.Spacer(length=5, background=colors["background"]),
+                widget.TextBox(
                     text='',
                     font='Font Awesome 5 Free',
                     background=colors["background"],
