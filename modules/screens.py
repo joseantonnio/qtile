@@ -6,7 +6,7 @@ import os
 
 wallpaper='~/.config/qtile/assets/wallpaper.png'
 
-bar = bar.Bar(
+my_bar = bar.Bar(
             [
                 widget.Sep(
                     padding=3,
@@ -117,6 +117,6 @@ bar = bar.Bar(
         )
 
 screens = [
-    Screen(wallpaper=wallpaper, top=bar),
-    Screen(wallpaper=wallpaper, top=bar)
+    Screen(wallpaper=wallpaper, wallpaper_mode='stretch', top=my_bar),
+    Screen(wallpaper=wallpaper, wallpaper_mode='stretch')
 ]

@@ -2,7 +2,10 @@
 picom & disown # --experimental-backends --vsync should prevent screen tearing on most setups if needed
 
 # Low battery notifier
-~/.config/qtile/scripts/check_battery.sh & disown
+$HOME/.config/qtile/scripts/check_battery.sh & disown
+
+# Screen Layout
+$HOME/.config/qtile/scripts/screen_layout.sh & disown
 
 # Start Conky
 conky -c $HOME/.config/qtile/scripts/system_overview & disown
